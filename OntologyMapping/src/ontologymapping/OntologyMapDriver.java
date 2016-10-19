@@ -23,21 +23,12 @@ public class OntologyMapDriver {
             URI owl2 = new URI(Paths.get("").toAbsolutePath()
                     .toUri().toString() + "res/OpenConf.owl");
 
-            AlignmentProcess ap1 = new StringDistAlignment();
-            Properties props = new Properties();
-            props.setProperty("stringFunction", "smoaDistance");
-            ap1.init(owl1, owl2);
-            ap1.align((Alignment) null, props);
-            
-            props = new Properties();
-            props.setProperty("stringFunction", "ngramDistance");
-            AlignmentProcess ap2 = new StringDistAlignment();
-            ap2.init(owl1, owl2);
-            ap2.align((Alignment) null, props);
-        } catch (URISyntaxException | AlignmentException ex) {
+            Skeleton sk = new Skeleton(owl1, owl2);
+            sk.match(MatchingTechniques.ALL, OutputFormat.HTML);
+
+        } catch (Exception ex) {
             Logger.getLogger(OntologyMapDriver.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
-    
+
 }
