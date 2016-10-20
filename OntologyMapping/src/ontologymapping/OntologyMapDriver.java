@@ -1,15 +1,9 @@
 package ontologymapping;
 
-import org.semanticweb.owl.align.Alignment;
-import org.semanticweb.owl.align.AlignmentProcess;
-import fr.inrialpes.exmo.align.impl.method.StringDistAlignment;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Paths;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.semanticweb.owl.align.AlignmentException;
 
 public class OntologyMapDriver {
 
@@ -25,6 +19,7 @@ public class OntologyMapDriver {
 
             Skeleton sk = new Skeleton(owl1, owl2);
             sk.match(MatchingTechniques.ALL, OutputFormat.HTML);
+            sk.match(MatchingTechniques.ALL, OutputFormat.RDF);
 
         } catch (Exception ex) {
             Logger.getLogger(OntologyMapDriver.class.getName()).log(Level.SEVERE, null, ex);
